@@ -40,12 +40,16 @@ export const adminMenu = [
   },
   {
     name: "Users",
+<<<<<<< HEAD
     path: "/admin/users",
     icon: "fa-solid fa-list-ul",
   },
   {
     name: "Technical Team",
     path: "/admin/engineers",
+=======
+    path: "/users",
+>>>>>>> 219f30bae00aef90703c01fd1c9a7feb7a638dbf
     icon: "fa-solid fa-list-ul",
   },
 

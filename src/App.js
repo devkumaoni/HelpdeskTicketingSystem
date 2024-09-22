@@ -8,8 +8,11 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import ApplyEngineer from "./pages/ApplyEngineer";
 import NotificationPage from "./pages/NotificationPage";
+<<<<<<< HEAD
 import Users from "./pages/admin/Users";
 import Engineers from "./pages/admin/Engineers";
+=======
+>>>>>>> 219f30bae00aef90703c01fd1c9a7feb7a638dbf
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -43,6 +46,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+<<<<<<< HEAD
               <Route
               path="/admin/users"
               element={
@@ -59,6 +63,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+=======
+>>>>>>> 219f30bae00aef90703c01fd1c9a7feb7a638dbf
             <Route
               path="/login"
               element={
