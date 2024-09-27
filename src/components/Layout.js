@@ -15,8 +15,39 @@ const Layout = ({ children }) => {
     message.success("logout successfull");
     navigate("/login");
   };
+
+
+    // Engineer menu
+    const engineerMenu = [
+      {
+        name: "Home",
+        path: "/",
+        icon: "fa-solid fa-home", // Changed to more standard home icon
+      },
+      {
+        name: "Dashboard Insights",
+        path: "/dashboard-insights",
+        icon: "fa-solid fa-chart-line", // Changed to a chart icon for insights
+      },
+      {
+        name: "Profile",
+        path: "/engineer/profile/:id",
+        icon: "fa-solid fa-id-badge", // Changed to an ID badge for profile
+      },
+      {
+        name: "Appointments",
+        path: "/engineer-appointments",
+        icon: "fa-solid fa-calendar-check", // Changed to a calendar icon for appointments
+      },
+      {
+        name: "Search",
+        path: "/search",
+        icon: "fa-solid fa-search", // Standard search icon
+      },
+    ];
+
   //rendering menu list
-  const SidebarMenu = user?.isAdmin ? adminMenu : userMenu;
+  const SidebarMenu = user?.isAdmin? adminMenu: user?.isEngineer ? engineerMenu : userMenu;
   return (
     <>
       <div className="main">

@@ -38,7 +38,7 @@ const Register = () => {
             <Input type="text" required />
           </Form.Item>
           <Form.Item label="Employee ID" name="employeeid">
-            <Input type="text" required />
+            <Input type="text" />
           </Form.Item>
           <Form.Item label="Email" name="email">
             <Input type="email" required />

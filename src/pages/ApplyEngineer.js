@@ -1,17 +1,19 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { Col, Form, Input, message, Row } from "antd";
+import { Col, Form, Input, message, Row, Typography } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import axios from "axios";
+
+const { Title, Paragraph } = Typography;
 
 const ApplyEngineer = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //handle form
+  // Handle form submission
   const handleFinish = async (values) => {
     try {
       dispatch(showLoading());
@@ -26,55 +28,66 @@ const ApplyEngineer = () => {
       );
       dispatch(hideLoading());
       if (res.data.success) {
-        message.success(res.data.success);
+        message.success(res.data.message);
         navigate("/");
       } else {
-        message.error(res.data.success);
+        message.error(res.data.message); // Adjusted to show the actual message
       }
     } catch (error) {
       console.log(error);
-      message.error("Something went Wrong");
+      message.error("Something went wrong");
     }
   };
+
   return (
     <Layout>
-      <h1 className="text-center">Apply Engineer</h1>
-      <Form layout="vertical" onFinish={handleFinish} className="m-3">
-        <h6 className="">Personal Details</h6>
+      <Title level={2} className="text-center mb-4">Apply For Technical Team Account</Title>
+      <Paragraph className="text-center mb-4">Please fill in your details below to apply for the Technical position.</Paragraph>
+      <Form
+        layout="vertical"
+        onFinish={handleFinish}
+        className="p-4 bg-white rounded shadow-sm"
+        style={{ maxWidth: '600px', margin: '0 auto' }} // Centering the form
+      >
+        <h6 className="mb-4 text-secondary">Personal Details</h6>
         <Row gutter={20}>
-          <Col xs={24} md={24} lg={8}>
+          <Col xs={24} md={12}>
             <Form.Item
               label="First Name"
               name="firstName"
               required
-              rules={[{ required: true }]}
+              rules={[{ required: true, message: 'Please enter your first name' }]}
             >
-              <Input type="text" placeholder="first name" />
+              <Input type="text" placeholder="First Name" />
             </Form.Item>
+          </Col>
+          <Col xs={24} md={12}>
             <Form.Item
               label="Last Name"
               name="lastName"
               required
-              rules={[{ required: true }]}
+              rules={[{ required: true, message: 'Please enter your last name' }]}
             >
-              <Input type="text" placeholder="last name" />
+              <Input type="text" placeholder="Last Name" />
             </Form.Item>
+          </Col>
+          <Col xs={24}>
             <Form.Item
               label="Email"
               name="email"
               required
-              rules={[{ required: true }]}
+              rules={[{ required: true, type: 'email', message: 'Please enter a valid email' }]}
             >
-              <Input type="text" placeholder="email" />
+              <Input type="email" placeholder="Email" />
             </Form.Item>
-
-            <div className="d-flex justify-content-end">
-              <button className="btn btn-primary" type="submit">
-                Submit
-              </button>
-            </div>
           </Col>
         </Row>
+
+        <div className="d-flex justify-content-end">
+          <button className="btn btn-primary" type="submit">
+            Submit
+          </button>
+        </div>
       </Form>
     </Layout>
   );

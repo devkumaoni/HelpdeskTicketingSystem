@@ -1,28 +1,24 @@
 export const userMenu = [
   {
-    name: "Home",
+    name: "New Issue",
     path: "/",
     icon: "fa-solid fa-house-user",
   },
-  {
-    name: "New Issue",
-    path: "/New-Issue",
-    icon: "fa-solid fa-ticket",
-  },
+  
   {
     name: "Dashboard Insights",
-    path: "/dashboard-insights",
-    icon: "fa-solid fa-list-ul",
-  },
-  {
-    name: "Apply Engineer",
-    path: "/apply-engineer",
-    icon: "fa-solid fa-cogs",
+    path: "/appointments",
+    icon: "fa-solid fa-list",
   },
   {
     name: "Search",
     path: "/search",
     icon: "fa-solid fa-magnifying-glass",
+  },
+  {
+    name: "Apply Engineer",
+    path: "/apply-engineer",
+    icon: "fa-solid fa-cogs",
   },
 ];
 
@@ -40,17 +36,18 @@ export const adminMenu = [
   },
   {
     name: "Users",
-<<<<<<< HEAD
     path: "/admin/users",
     icon: "fa-solid fa-list-ul",
   },
   {
     name: "Technical Team",
     path: "/admin/engineers",
-=======
-    path: "/users",
->>>>>>> 219f30bae00aef90703c01fd1c9a7feb7a638dbf
     icon: "fa-solid fa-list-ul",
+  },
+  {
+    name: "Profile",
+    path: "/profile",
+    icon: "fa-solid fa-user",
   },
 
   {

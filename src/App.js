@@ -8,11 +8,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import ApplyEngineer from "./pages/ApplyEngineer";
 import NotificationPage from "./pages/NotificationPage";
-<<<<<<< HEAD
 import Users from "./pages/admin/Users";
 import Engineers from "./pages/admin/Engineers";
-=======
->>>>>>> 219f30bae00aef90703c01fd1c9a7feb7a638dbf
+import Profile from "./pages/engineer/Profile";
+import BookingPage from "./pages/BookingPage";
+import Appointments from "./pages/Appointments";
+import EngineerAppointment from "./pages/engineer/EngineerAppointment";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -22,14 +23,6 @@ function App() {
           <Spinner />
         ) : (
           <Routes>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              }
-            />
             <Route
               path="/apply-engineer"
               element={
@@ -46,8 +39,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-<<<<<<< HEAD
-              <Route
+            <Route
               path="/admin/users"
               element={
                 <ProtectedRoute>
@@ -55,7 +47,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-             <Route
+            <Route
               path="/admin/engineers"
               element={
                 <ProtectedRoute>
@@ -63,8 +55,22 @@ function App() {
                 </ProtectedRoute>
               }
             />
-=======
->>>>>>> 219f30bae00aef90703c01fd1c9a7feb7a638dbf
+            <Route
+              path="/engineer/profile/:id"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />{" "}
+            <Route
+              path="/engineer/book-appointment/:engineerId"
+              element={
+                <ProtectedRoute>
+                  <BookingPage />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/login"
               element={
@@ -81,6 +87,30 @@ function App() {
                 </PublicRoute>
               }
             />{" "}
+            <Route
+              path="/appointments"
+              element={
+                <ProtectedRoute>
+                  <Appointments />
+                </ProtectedRoute>
+              }
+            />{" "}
+            <Route
+              path="/engineer-appointments"
+              element={
+                <ProtectedRoute>
+                  <EngineerAppointment />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <HomePage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         )}
       </BrowserRouter>
