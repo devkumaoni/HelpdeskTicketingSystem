@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   },
   employeeId: {
     type: String,
-    required: [true, "ID is required"],
+    required: [false],
   },
   password: {
     type: String,
@@ -33,7 +33,9 @@ const userSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
-});
+},
+
+);
 
 const userModel = mongoose.model("users", userSchema);
 module.exports = userModel;

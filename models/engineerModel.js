@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const engineerSchema = new mongoose.Schema(
   {
-    
+    userId: {
+      type: String,
+    },
     firstName: {
       type: String,
       required: [true, "first Name Is Required"],
-    },userId: {
-      type: String,
     },
     lastName: {
       type: String,

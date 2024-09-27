@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 //routes
 app.use("/api/v1/user", require("./routes/userRoutes"));
 app.use('/api/v1/admin', require('./routes/adminRoutes'));
-app.use("/api/v1/doctor", require('./routes/engineerRoutes'));
+app.use("/api/v1/engineer", require('./routes/engineerRoutes'));
 //port
 const port = process.env.PORT || 8000;
 

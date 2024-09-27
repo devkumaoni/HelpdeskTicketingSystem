@@ -2,6 +2,8 @@ const userModel = require("../models/userModels");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const engineerModel = require("../models/engineerModel");
+const appointmentModel = require("../models/appointmentModel");
+const moment = require ('moment')
 //register callback
 const registerController = async (req, res) => {
   try {
@@ -155,6 +157,73 @@ const deleteAllNotificationController = async (req, res) => {
     });
   }
 };
+
+//get all engineers
+const getAllEngineerController = async (req, res) => {
+  try {
+    const engineer = await engineerModel.find({ status: "approved" });
+    res.status(200).send({
+      success: true,
+      message: "engineer lists fetched successfully",
+      data: engineer,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while fetching engineer",
+    });
+  }
+};
+
+//book appointment
+const bookAppointmentController = async (req, res) => {
+  try {
+    req.body.date = moment(req.body.date, 'DD-MM-YYYY').toISOString()
+    req.body.status = "pending";
+    const newAppointment = new appointmentModel(req.body);
+    await newAppointment.save();
+    const user = await userModel.findOne({ _id: req.body.engineerInfo.userId });
+    user.notification.push({
+      type: "New-appointment-request",
+      message: `A new Appointment request from ${req.body.userInfo.name}`,
+      onClickPath: "/users/appointments",
+    });
+    await user.save();
+    res.status(200).send({
+      success: true,
+      message: "Appointment book successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while booking appointment",
+    });
+  }
+};
+
+const userAppointmentController = async (req, res) => {
+  try {
+    const appointments = await appointmentModel.find({
+      userId: req.body.userId,
+    });
+    res.status(200).send({
+      message: "User appointment fetch successfully",
+      data: appointments,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "error in user appointments",
+    });
+  }
+};
+
 module.exports = {
   loginController,
   registerController,
@@ -162,4 +231,7 @@ module.exports = {
   applyEngineerController,
   getAllNotificationController,
   deleteAllNotificationController,
+  getAllEngineerController,
+  bookAppointmentController,
+  userAppointmentController,
 };
